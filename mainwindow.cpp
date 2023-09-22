@@ -11,15 +11,21 @@
 #include <QTimer>
 #include <QInputDialog>
 #include <QDateTime>
+#include <QtDebug>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonValue>
+
 
 const char toHex[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    qDebug()<<ui->tEditSendText->toPlainText();
     //设置程序的开启默认画面
     setUdpGuiExt();
 
@@ -37,6 +43,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lEditUdpIP->setText(m_ip);
     ui->SndProgressBar->setVisible(false);
 
+    ui->cBoxNetType->setCurrentIndex(2);
+    ui->lEditIpAddr->setText("192.168.100.246");
+    ui->lEditIpPort->setText("2017");
+
     //初始化全局变量
     rmtServerIP = new QHostAddress();
     rcvDataCnt  = 0;
@@ -47,6 +57,8 @@ MainWindow::MainWindow(QWidget *parent) :
     CurIPPort = "";
     CurPath = "";
     curFile = 0;
+
+
 }
 
 MainWindow::~MainWindow()
@@ -831,4 +843,53 @@ void MainWindow::on_actionChinese_triggered()
     translator.load(":/language/Chinese.qm");
     qApp->installTranslator(&translator);
     ui->retranslateUi(this);
+}
+
+void MainWindow::on_action_triggered()
+{
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    lidarPointObsEdit *errLidarPointWindow = new lidarPointObsEdit;
+
+    errLidarPointWindow->show();
+//    connect(errLidarPointWindow,SIGNAL(send_point_signal(QPoint point)),this, SLOT(rece_point_slots(QPoint point)));
+    connect(errLidarPointWindow, &lidarPointObsEdit::send_point_signal, this, &MainWindow::rece_point_slots);
+}
+
+void MainWindow::rece_point_slots(QPoint rt_point)
+{
+    QPoint base_point(200, 200);
+    qreal dis = std::sqrt(std::pow(rt_point.x()-base_point.x(),2) + std::pow(rt_point.y() - base_point.y(), 2));
+    QPoint diff = rt_point - base_point;
+    qreal angle = std::atan2(diff.y(),diff.x());
+    qDebug()<<" receive point "<<rt_point.x() << rt_point.y() << dis << (angle * 180 / M_PI + 180);
+
+    QString json_string = ui->tEditSendText->toPlainText();
+    QJsonDocument doc = QJsonDocument::fromJson(json_string.toUtf8());
+    QJsonObject json = doc.object();
+    QJsonObject lidar_obj = json["lidar_err"].toObject();
+
+    QJsonArray lidar_arry_angle = lidar_obj["lidar_err_start_angle"].toArray();
+    if(!lidar_arry_angle.isEmpty()){
+        lidar_arry_angle[0] = (angle * 180 /M_PI) + 180;
+    }
+    QJsonArray lidar_arry_dis = lidar_obj["lidar_err_dis"].toArray();
+    if(!lidar_arry_dis.isEmpty()){
+        lidar_arry_dis[0] = dis * 20;
+    }
+    QJsonArray lidar_arry_angle_all = lidar_obj["lidar_err_angle_all"].toArray();
+    if(!lidar_arry_angle_all.isEmpty()){
+        lidar_arry_angle_all[0] = 30 * (100/dis)  ;
+    }
+
+    lidar_obj["lidar_err_start_angle"] = lidar_arry_angle;
+    lidar_obj["lidar_err_dis"] = lidar_arry_dis;
+    lidar_obj["lidar_err_angle_all"] = lidar_arry_angle_all;
+    json["lidar_err"] = lidar_obj;
+    doc.setObject(json);
+    ui->tEditSendText->setPlainText(QString(doc.toJson(QJsonDocument::Indented)));
+
 }

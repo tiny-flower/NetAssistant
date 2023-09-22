@@ -6,6 +6,8 @@
 #include <QDataStream>
 #include <QTextStream>
 #include  "TcpServer.h"
+#include  "lidarpointobsedit.h"
+#include <QPoint>
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +27,7 @@ public:
 
     QList<int> tcpClientSocketDescriptorList;
     int TcpClientLinkCnt;
+//    lidarPointObsEdit *errLidarPointWindow;
 
 signals:
     void sendDataToClient(char *msg, int length, int socketDescriptor, int socketDescriptorEx);
@@ -79,6 +82,10 @@ private slots:
 
     void on_actionChinese_triggered();
 
+    void on_action_triggered();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -108,6 +115,9 @@ private:
     QFile *curFile;
 
     QTranslator translator;
+
+public slots:
+    void rece_point_slots(QPoint point);
 };
 
 #endif // MAINWINDOW_H

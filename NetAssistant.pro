@@ -17,15 +17,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     mainwindow.cpp \
-    TcpServer.cpp
+    TcpServer.cpp \
+    lidarpointobsedit.cpp
 
 HEADERS  += \
     define.h \
     mainwindow.h \
-    TcpServer.h
+    TcpServer.h \
+    lidarpointobsedit.h
 
 FORMS    += \
-    mainwindow.ui
+    mainwindow.ui \
+    lidarpointobsedit.ui
 
 RESOURCES += \
     qrc.qrc

@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>577</width>
-    <height>483</height>
+    <width>943</width>
+    <height>604</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>网络调试助手</string>
+   <string>HIL fault inject tool</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -38,7 +38,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
+            <width>200</width>
             <height>500</height>
            </size>
           </property>
@@ -75,6 +75,12 @@
            </property>
            <item>
             <widget class="QLabel" name="label">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="lineWidth">
               <number>0</number>
              </property>
@@ -93,6 +99,12 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
              </property>
              <item>
               <property name="text">
@@ -113,6 +125,12 @@
            </item>
            <item>
             <widget class="QLabel" name="label_IP">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>本地IP地址</string>
              </property>
@@ -126,6 +144,12 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="inputMask">
               <string>000.000.000.000</string>
              </property>
@@ -133,6 +157,12 @@
            </item>
            <item>
             <widget class="QLabel" name="label_Port">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>本地端口</string>
              </property>
@@ -145,6 +175,12 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
              </property>
              <property name="layoutDirection">
               <enum>Qt::LeftToRight</enum>
@@ -173,7 +209,7 @@
              </property>
              <property name="maximumSize">
               <size>
-               <width>350</width>
+               <width>200</width>
                <height>60</height>
               </size>
              </property>
@@ -238,7 +274,7 @@
           </property>
           <property name="maximumSize">
            <size>
-            <width>350</width>
+            <width>200</width>
             <height>500</height>
            </size>
           </property>
@@ -246,6 +282,12 @@
            <number>0</number>
           </property>
           <widget class="QWidget" name="tab">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <attribute name="title">
             <string>接收设置</string>
            </attribute>
@@ -412,6 +454,12 @@
            </layout>
           </widget>
           <widget class="QWidget" name="tab_2">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <attribute name="title">
             <string>发送设置</string>
            </attribute>
@@ -631,6 +679,18 @@
          <layout class="QGridLayout" name="gridLayout">
           <item row="1" column="0">
            <widget class="QPlainTextEdit" name="ReceiveTextEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>2000</width>
+              <height>50</height>
+             </size>
+            </property>
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -638,6 +698,12 @@
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_9">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>23</height>
+             </size>
+            </property>
             <property name="text">
              <string>数据接收区</string>
             </property>
@@ -670,13 +736,13 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>220</width>
+              <width>100</width>
               <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>400</width>
+              <width>200</width>
               <height>60</height>
              </size>
             </property>
@@ -698,6 +764,13 @@
             </property>
             <property name="text">
              <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>点云故障编辑模式</string>
             </property>
            </widget>
           </item>
@@ -819,7 +892,7 @@
           <item>
            <widget class="QPlainTextEdit" name="tEditSendText">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -827,8 +900,32 @@
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>120</height>
+              <height>16777215</height>
              </size>
+            </property>
+            <property name="plainText">
+             <string> {
+ &quot;Fault_injection_enable&quot;:1,
+ &quot;can_signal_timeout&quot;:	{
+ 	&quot;st_enable&quot;:0,
+ 	&quot;st_id&quot;:[&quot;0x302&quot;]
+ 	},
+ &quot;can_signal_change&quot;:	{
+ 	&quot;sc_enable&quot;:0,
+ 	&quot;sc_information&quot;:[&quot;BCM_EHB_FluidLevelFault&quot;, 1]
+ 	},
+ &quot;lidar_err&quot;:	{
+ 	&quot;lidar_err_enable&quot;:1,
+ 	&quot;lidar_err_sign&quot;:[3],
+           	&quot;lidar_err_mode&quot;:[0], 
+               	&quot;lidar_err_start_angle&quot;: [0], 
+               	&quot;lidar_err_angle_all&quot;:[30] ,
+	&quot;lidar_err_dis&quot;:[1000],
+           	&quot;lidar_err_obstacle_height_low&quot;:[0], 
+               	&quot;lidar_err_obstacle_height_high&quot;: [32], 
+               	&quot;lidar_err_interval&quot;:[1000] 
+ 	}
+ }</string>
             </property>
            </widget>
           </item>
@@ -838,7 +935,7 @@
              <bool>false</bool>
             </property>
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -852,7 +949,7 @@
             <property name="maximumSize">
              <size>
               <width>75</width>
-              <height>61</height>
+              <height>16777215</height>
              </size>
             </property>
             <property name="font">
@@ -1087,8 +1184,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>577</width>
-     <height>22</height>
+     <width>943</width>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
