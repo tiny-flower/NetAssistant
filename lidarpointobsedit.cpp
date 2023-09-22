@@ -59,4 +59,17 @@ void lidarPointObsEdit::mouseReleaseEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton){
         m_mousePressed = false;
     }
+    m_image.fill(Qt::transparent);
 }
+
+//void lidarPointObsEdit::reject()
+//{
+//        //do not close window
+//    m_image.fill(Qt::transparent);
+//}
+
+void lidarPointObsEdit::on_buttonBox_rejected()
+{
+
+}
+

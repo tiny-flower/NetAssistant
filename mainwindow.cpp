@@ -853,7 +853,7 @@ void MainWindow::on_action_triggered()
 void MainWindow::on_pushButton_clicked()
 {
     lidarPointObsEdit *errLidarPointWindow = new lidarPointObsEdit;
-
+    errLidarPointWindow->setWindowTitle("lidar obstacles edit mode");
     errLidarPointWindow->show();
 //    connect(errLidarPointWindow,SIGNAL(send_point_signal(QPoint point)),this, SLOT(rece_point_slots(QPoint point)));
     connect(errLidarPointWindow, &lidarPointObsEdit::send_point_signal, this, &MainWindow::rece_point_slots);
